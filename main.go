@@ -18,6 +18,6 @@ func main() {
 		w.Write([]byte("Content loaded with HTMX!"))
 	})
 
-	log.Println("Server is running at http://localhost:8080")
+	log.Println("Server is running")
 	http.ListenAndServe(":8080", nil)
 }
