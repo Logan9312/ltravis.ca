@@ -45,11 +45,5 @@ COPY --from=go-builder /app/main .
 # Copy the compiled CSS from the second stage
 COPY --from=node-builder /node_app/static/output.css ./static/
 
-# Set the PORT environment variable
-ENV PORT 8080
-
-# Expose port 8080
-EXPOSE 8080
-
 # Command to run the executable
 CMD ["./main"]
