@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -18,7 +19,7 @@ func main() {
 		w.Write([]byte("Content loaded with HTMX!"))
 	})
 
-	log.Println("Server is running")
+	fmt.Println("Server is running")
 	log.Fatal(http.ListenAndServe(port, nil))
 }
 
