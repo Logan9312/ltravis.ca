@@ -12,7 +12,7 @@ func main() {
 	//Compile Tailwind
 	err := exec.Command("npx", "postcss", "static/tailwind.css", "-o", "static/output.css").Run()
 	if err != nil {
-		fmt.Println("Failed to compile CSS", http.StatusInternalServerError)
+		fmt.Println("Failed to compile CSS", http.StatusInternalServerError, err)
 		return
 	}
 
