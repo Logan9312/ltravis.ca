@@ -3,9 +3,12 @@ package main
 import (
 	"log"
 	"net/http"
+	"os"
 )
 
 func main() {
+	// Use `PORT` provided in environment or default to 3000
+	var port = envPortOr("3000")
 
 	// Serve static assets like CSS, JS, images, etc.
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
@@ -19,5 +22,17 @@ func main() {
 	})
 
 	log.Println("Server is running")
-	http.ListenAndServe(":8080", nil)
+	log.Fatal(http.ListenAndServe(port, nil))
+}
+
+// Returns PORT from environment if found, defaults to
+// value in `port` parameter otherwise. The returned port
+// is prefixed with a `:`, e.g. `":3000"`.
+func envPortOr(port string) string {
+	// If `PORT` variable in environment exists, return it
+	if envPort := os.Getenv("PORT"); envPort != "" {
+		return ":" + envPort
+	}
+	// Otherwise, return the value of `port` variable from function argument
+	return ":" + port
 }
