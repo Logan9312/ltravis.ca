@@ -1,20 +1,11 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"net/http"
-	"os/exec"
 )
 
 func main() {
-
-	//Compile Tailwind
-	err := exec.Command("npx", "postcss", "static/tailwind.css", "-o", "static/output.css").Run()
-	if err != nil {
-		fmt.Println("Failed to compile CSS", http.StatusInternalServerError, err)
-		return
-	}
 
 	// Serve static assets like CSS, JS, images, etc.
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
