@@ -8,10 +8,7 @@ import (
 
 func main() {
 	// Use `PORT` provided in environment or default to 3000
-	var port = envPortOr("3000")
-
-	// Serve static assets like CSS, JS, images, etc.
-	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
+	port := envPortOr("3000")
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		http.ServeFile(w, r, "html/index.html")
